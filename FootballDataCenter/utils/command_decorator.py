@@ -1,9 +1,9 @@
 import traceback
-from multiprocessing.context import Process
 
-from django.conf import settings
-from numpy.ma.bench import timer
+from timeit import default_timer as timer
 import logging
+
+from system.models import Process
 
 
 def command_decorator(logger_obj, custom_msg=''):
@@ -14,7 +14,7 @@ def command_decorator(logger_obj, custom_msg=''):
         raise Exception('Bad logger object passed')
 
     def real_decorator(function):
-        def wrapped_function(*func_args, **func_kargs):
+        def wrapped_function(*func_args, **func_kwargs):
             p = Process()
             p.name = custom_msg
             p.start()
@@ -26,7 +26,7 @@ def command_decorator(logger_obj, custom_msg=''):
             v = None
             start = timer()
             try:
-                v = function(*func_args, **func_kargs)
+                v = function(*func_args, **func_kwargs)
                 spent = timer() - start
                 logger_obj.info('{} finished!'.format(custom_msg))
             except Exception as e:

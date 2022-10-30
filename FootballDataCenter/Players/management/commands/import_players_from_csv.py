@@ -1,17 +1,22 @@
+import logging
 import os
 
 from django.conf import settings
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 import pandas as pd
 
 import requests
 from bs4 import BeautifulSoup
 
+from utils.command_decorator import command_decorator
+
 
 class Command(BaseCommand):
     help = 'Closes the specified poll for voting'
     USELESS_POSITIONS = ['MFFW', 'FWMF', 'DFMF', 'FWDF', 'MFDF', 'DFFW']
+    log = logging.getLogger(__name__)
 
+    @command_decorator(log, 'import_players_from_csv')
     def handle(self, *args, **options):
         self.main()
 
