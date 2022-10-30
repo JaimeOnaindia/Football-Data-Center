@@ -15,12 +15,12 @@ def command_decorator(logger_obj, custom_msg=''):
 
     def real_decorator(function):
         def wrapped_function(*func_args, **func_kwargs):
+            spent = 0
             p = Process()
             p.name = custom_msg
             p.start()
 
-            logger_obj.debug(' {} function args: {}'.format(custom_msg,
-                                                            str(func_args)))
+            logger_obj.debug(' {} function args: {}'.format(custom_msg, str(func_args)))
             logger_obj.info('Starting {} ...' .format(custom_msg))
 
             v = None
@@ -34,14 +34,10 @@ def command_decorator(logger_obj, custom_msg=''):
                 logger_obj.error(traceback.format_exc())
                 spent = timer() - start
                 p.error_status()
-                message = 'Error in command {} . Exception \n{}\n{}'.format(
-                    custom_msg, repr(e), traceback.format_exc()
-                )
             else:
                 p.ok_status()
             finally:
-                message = 'Spent {} seconds executing {}'.format(spent,
-                                                                 custom_msg)
+                message = 'Spent {} seconds executing {}'.format(spent, custom_msg)
                 logger_obj.info(message)
                 return v
 
