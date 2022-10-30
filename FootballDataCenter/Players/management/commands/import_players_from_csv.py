@@ -1,3 +1,5 @@
+import os
+
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 import pandas as pd
@@ -18,9 +20,8 @@ class Command(BaseCommand):
 
     @staticmethod
     def import_players_from_kaggle_csv():
-        df_records = pd.read_csv("C:/Users/Jaime/Documents/Jaime/PlayerStats2022.csv",
-                                 encoding='latin-1',
-                                 sep=';')
+        filename_dir = os.path.join(settings.BASE_DIR, 'Players/Data/players_stats_21-22.csv')
+        df_records = pd.read_csv(filename_dir, encoding='latin-1', sep=';')
         transfermarket_response = requests.get(
             settings.TRANSFERMARKET_SEARCH_RESULT_BY_PLAYER.format(player='messi'),
             headers={'User-Agent': 'Mozilla/5.0'}
