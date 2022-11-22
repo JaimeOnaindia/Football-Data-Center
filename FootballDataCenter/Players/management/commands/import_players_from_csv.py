@@ -27,6 +27,7 @@ class Command(BaseCommand):
     def import_players_from_kaggle_csv():
         filename_dir = os.path.join(settings.BASE_DIR, 'Players/Data/players_stats_21-22.csv')
         df_records = pd.read_csv(filename_dir, encoding='latin-1', sep=';')
+
         transfermarket_response = requests.get(
             settings.TRANSFERMARKET_SEARCH_RESULT_BY_PLAYER.format(player='messi'),
             headers={'User-Agent': 'Mozilla/5.0'}
@@ -35,3 +36,5 @@ class Command(BaseCommand):
         players_table_html = soup.table
         print(players_table_html)
         print("aa")
+
+

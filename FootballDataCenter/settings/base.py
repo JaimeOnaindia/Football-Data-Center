@@ -169,3 +169,10 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 TRANSFERMARKET_SEARCH_RESULT_BY_PLAYER = 'https://www.transfermarkt.com/schnellsuche/ergebnis/schnellsuche?query={player}' # NOQA
+
+FBREF_5_EUROPEAN_LEAGUES_PLAYERS_URL = 'https://fbref.com/en/comps/Big5/stats/players/Big-5-European-Leagues-Stats' # NOQA
+
+FBREF_5_EUROPEAN_LEAGUES_PLAYERS_COLUMNS = [
+    'id', 'name', 'nation', 'position', 'team', 'league', 'age', 'born_year',
+    'matches_played', 'starter', 'minutes_played',
+]
