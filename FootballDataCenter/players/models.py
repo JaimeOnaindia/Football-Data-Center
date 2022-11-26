@@ -3,7 +3,17 @@ from django.db import models
 # Create your models here.
 
 
-class Player(models.Model):
+class BasePlayer(models.Model):
+    name = models.CharField(max_length=30)
+    nationality = models.CharField(max_length=30)
+    date_birth = models.DateField(null=True)
+    team_name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return f'{self.name} - {self.nationality}'
+
+
+class BasePlayerFBREF(models.Model):
     GOALKEEPER = 'GK'
     CENTER_BACK = 'CB'
     RIGHT_BACK = 'RB'
@@ -37,5 +47,3 @@ class Player(models.Model):
     original_position = models.CharField(max_length=3,
                                          choices=POSITION_CHOICES,
                                          default=UNKNOWN)
-
-# class PlayerGoalStats(models.Model):

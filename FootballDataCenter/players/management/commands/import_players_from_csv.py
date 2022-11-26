@@ -25,7 +25,7 @@ class Command(BaseCommand):
 
     @staticmethod
     def import_players_from_kaggle_csv():
-        filename_dir = os.path.join(settings.BASE_DIR, 'Players/Data/players_stats_21-22.csv')
+        filename_dir = os.path.join(settings.BASE_DIR, 'players/Data/players_stats_21-22.csv')
         df_records = pd.read_csv(filename_dir, encoding='latin-1', sep=';')
 
         transfermarket_response = requests.get(

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Players',
+    'players',
+    'teams',
     'system'
 ]
 
@@ -93,7 +94,7 @@ LOGGING = {
             'level': 'INFO',
             'propagate': True
         },
-        'Players': {
+        'players': {
             'handlers': ['file', ],
             'level': 'INFO',
             'propagate': True
@@ -173,6 +174,8 @@ TRANSFERMARKET_SEARCH_RESULT_BY_PLAYER = 'https://www.transfermarkt.com/schnells
 FBREF_5_EUROPEAN_LEAGUES_PLAYERS_URL = 'https://fbref.com/en/comps/Big5/stats/players/Big-5-European-Leagues-Stats' # NOQA
 
 FBREF_5_EUROPEAN_LEAGUES_PLAYERS_COLUMNS = [
-    'id', 'name', 'nation', 'position', 'team', 'league', 'age', 'born_year',
-    'matches_played', 'starter', 'minutes_played',
+    'rank', 'name', 'nation', 'position', 'team', 'league', 'age', 'born_year',
+    'matches_played', 'starter', 'minutes_played', 'goals', 'assists', 'non_pen_goals',
+    'penalty_goals', 'penalty_attempts', 'yellow_cards', 'red_cards', 'exp_goals',
+    'exp_non_pen_goals', 'exp_goals_assists', 'expected_non_pen_goals_assists'
 ]
