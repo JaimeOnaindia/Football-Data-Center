@@ -5,11 +5,10 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 import pandas as pd
 
-import requests
-from bs4 import BeautifulSoup
-
+from geo.models import Country
 from players.models import BasePlayerFBREF, BasePlayer
 from utils.command_decorator import command_decorator
+from utils.web_scrapper import WebScrapper
 
 
 class Command(BaseCommand):
@@ -20,18 +19,11 @@ class Command(BaseCommand):
         self.main()
 
     def main(self):
-        players_stats_df = self.get_beautiful_soup()
+        url = settings.FBREF_5_EUROPEAN_LEAGUES_PLAYERS_URL
+        web_scrapper = WebScrapper(url)
+        players_stats_df = web_scrapper.get_dataframe_from_web_table()
         players_processed_df = self.process_stats_dataframe(players_stats_df)
         self.update_or_create_players_to_database(players_processed_df)
-
-    @staticmethod
-    def get_beautiful_soup():
-        url = settings.FBREF_5_EUROPEAN_LEAGUES_PLAYERS_URL
-        fbref_response = requests.get(url=url)
-        soup = BeautifulSoup(fbref_response.text, 'lxml')
-        players_table_byte = soup.table.prettify()
-        players_stats = pd.read_html(players_table_byte)
-        return players_stats
 
     def process_stats_dataframe(self, players_stats_df):
         columns = settings.FBREF_5_EUROPEAN_LEAGUES_PLAYERS_COLUMNS
@@ -68,10 +60,15 @@ class Command(BaseCommand):
     @staticmethod
     def update_or_create_players_to_database(players_processed_df):
         for row in players_processed_df.to_dict('records'):
-            base_players_default = {'nationality': row['nation'],
-                                    'team_name': row['team']}
+            code_alpha_3 = row['nation'].split(' ')[-1]
+            country = Country.objects.filter(code_alpha_3=code_alpha_3).first()
+            if country is None:
+                print("aa")
+            base_players_default = {'team_name': row['team']}
+
             BasePlayer.objects.update_or_create(
                 name=row['name'],
                 date_birth=row['date_birth'],
+                nationality=country,
                 defaults=base_players_default
             )
