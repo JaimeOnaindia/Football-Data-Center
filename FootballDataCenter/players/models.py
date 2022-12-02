@@ -47,3 +47,5 @@ class BasePlayerFBREF(models.Model):
                                          choices=POSITION_CHOICES,
                                          default=UNKNOWN)
     matches_played = models.IntegerField()
+    as_starter = models.IntegerField()
+    minutes_played = models.IntegerField()

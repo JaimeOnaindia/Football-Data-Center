@@ -66,7 +66,7 @@ class Command(BaseCommand):
                 name=row['name'],
                 defaults=base_players_defaults
             )
-            fbref_players_defaults = {}
+            fbref_players_defaults = {''}
             BasePlayerFBREF.objects.update_or_create(
                 name=row['name'],
                 defaults=fbref_players_defaults
