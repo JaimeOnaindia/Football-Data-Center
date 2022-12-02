@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand
 import pandas as pd
 
 from geo.models import Country
-from players.models import BasePlayer
+from players.models import BasePlayer, BasePlayerFBREF
 from utils.command_decorator import command_decorator
 from utils.web_scrapper import WebScrapper
 
@@ -50,9 +50,7 @@ class Command(BaseCommand):
         valid_year_and_age_format = row.born_year != 0 and row.age != 0
         if valid_year_and_age_format:
             born_year = int(row.born_year)
-            age = int(row.age[:-4])
-            row['date_birth'] = (datetime.date(born_year, 1, 1)
-                                 + datetime.timedelta(days=age))
+            row['date_birth'] = datetime.date(born_year, 1, 1)
         else:
             row['date_birth'] = None
         return row
@@ -62,11 +60,14 @@ class Command(BaseCommand):
         for row in players_processed_df.to_dict('records'):
             code_alpha_3 = row['nation'].split(' ')[-1] if row['nation'] != 0 else None
             country = Country.objects.filter(code_alpha_3=code_alpha_3).first()
-            base_players_default = {'team_name': row['team']}
-
+            base_players_defaults = {'team_name': row['team'], 'date_birth': row['date_birth'],
+                                     'country': country}
             BasePlayer.objects.update_or_create(
                 name=row['name'],
-                date_birth=row['date_birth'],
-                country=country,
-                defaults=base_players_default
+                defaults=base_players_defaults
+            )
+            fbref_players_defaults = {}
+            BasePlayerFBREF.objects.update_or_create(
+                name=row['name'],
+                defaults=fbref_players_defaults
             )

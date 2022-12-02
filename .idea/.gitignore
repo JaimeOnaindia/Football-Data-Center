@@ -4,6 +4,10 @@
 # created by virtualenv automatically
 *
 FootballDataCenter/__pycache__/
-Players/__pycache__/
+players/__pycache__/
+teams/__pycache__/
+geo/__pycache__/
 settings/__pycache__/
+system/__pycache__/
 !**/__pycache__/
+
