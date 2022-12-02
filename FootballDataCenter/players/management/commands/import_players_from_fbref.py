@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand
 import pandas as pd
 
 from geo.models import Country
-from players.models import BasePlayerFBREF, BasePlayer
+from players.models import BasePlayer
 from utils.command_decorator import command_decorator
 from utils.web_scrapper import WebScrapper
 
@@ -60,15 +60,13 @@ class Command(BaseCommand):
     @staticmethod
     def update_or_create_players_to_database(players_processed_df):
         for row in players_processed_df.to_dict('records'):
-            code_alpha_3 = row['nation'].split(' ')[-1]
+            code_alpha_3 = row['nation'].split(' ')[-1] if row['nation'] != 0 else None
             country = Country.objects.filter(code_alpha_3=code_alpha_3).first()
-            if country is None:
-                print("aa")
             base_players_default = {'team_name': row['team']}
 
             BasePlayer.objects.update_or_create(
                 name=row['name'],
                 date_birth=row['date_birth'],
-                nationality=country,
+                country=country,
                 defaults=base_players_default
             )

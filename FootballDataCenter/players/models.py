@@ -5,7 +5,7 @@ from django.db import models
 
 class BasePlayer(models.Model):
     name = models.CharField(max_length=64)
-    nationality = models.ForeignKey('geo.Country', on_delete=models.CASCADE, null=True)
+    country = models.ForeignKey('geo.Country', on_delete=models.CASCADE, null=True)
     date_birth = models.DateField(null=True)
     team_name = models.CharField(max_length=30)
 

@@ -100,6 +100,16 @@ LOGGING = {
             'level': 'INFO',
             'propagate': True
         },
+        'geo': {
+            'handlers': ['file', ],
+            'level': 'INFO',
+            'propagate': True
+        },
+        'teams': {
+            'handlers': ['file', ],
+            'level': 'INFO',
+            'propagate': True
+        },
         'system': {
             'handlers': ['file', ],
             'level': 'INFO',
