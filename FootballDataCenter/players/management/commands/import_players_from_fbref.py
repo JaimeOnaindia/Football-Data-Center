@@ -6,7 +6,7 @@ from django.core.management.base import BaseCommand
 import pandas as pd
 
 from geo.models import Country
-from players.models import BasePlayer, BasePlayerFBREF
+from players.models import BasePlayer, BasePlayerStatsFBREF
 from utils.command_decorator import command_decorator
 from utils.web_scrapper import WebScrapper
 
@@ -43,6 +43,9 @@ class Command(BaseCommand):
         players_full_dataframe = players_full_dataframe.apply(
             self.create_datetime_player_birth, axis=1
         )
+        players_full_dataframe['position'] = players_full_dataframe['position'].apply(
+            self.process_players_positions
+        )
         return players_full_dataframe
 
     @staticmethod
@@ -56,6 +59,22 @@ class Command(BaseCommand):
         return row
 
     @staticmethod
+    def process_players_positions(position):
+        positions_dict = {
+            'GK': 'GK',
+            'DF': 'DF',
+            'DF,FW': 'RB',
+            'FW,DF': 'LB',
+            'MF,DF': 'DF,MF',
+            'DF,MF': 'DF,MF',
+            'MF': 'MF',
+            'FW,MF': 'CAM',
+            'MF,FW': 'RW',
+            'FW': 'FW'
+        }
+        return positions_dict.get(position)
+
+    @staticmethod
     def update_or_create_players_to_database(players_processed_df):
         for row in players_processed_df.to_dict('records'):
             code_alpha_3 = row['nation'].split(' ')[-1] if row['nation'] != 0 else None
@@ -66,8 +85,25 @@ class Command(BaseCommand):
                 name=row['name'],
                 defaults=base_players_defaults
             )
-            fbref_players_defaults = {''}
-            BasePlayerFBREF.objects.update_or_create(
+            fbref_players_defaults = {
+                'original_position': row['position'],
+                'matches_played': row['matches_played'],
+                'as_starter': row['starter'],
+                'minutes_played': row['minutes_played'],
+                'team_name': row['team'],
+                'goals': row['goals'],
+                'assists': row['assists'],
+                'non_pen_goals': row['non_pen_goals'],
+                'penalty_goals': row['penalty_goals'],
+                'penalty_attempts': row['penalty_attempts'],
+                'yellow_cards': row['yellow_cards'],
+                'red_cards': row['red_cards'],
+                'exp_goals': row['exp_goals'],
+                'exp_non_pen_goals': row['exp_non_pen_goals'],
+                'exp_goals_assists': row['exp_goals_assists'],
+                'expected_non_pen_goals_assists': row['expected_non_pen_goals_assists'],
+            }
+            BasePlayerStatsFBREF.objects.update_or_create(
                 name=row['name'],
                 defaults=fbref_players_defaults
             )

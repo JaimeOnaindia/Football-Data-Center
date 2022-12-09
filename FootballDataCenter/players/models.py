@@ -13,7 +13,7 @@ class BasePlayer(models.Model):
         return f'{self.name}'
 
 
-class BasePlayerFBREF(models.Model):
+class BasePlayerStatsFBREF(models.Model):
     GOALKEEPER = 'GK'
     CENTER_BACK = 'CB'
     RIGHT_BACK = 'RB'
@@ -28,11 +28,11 @@ class BasePlayerFBREF(models.Model):
 
     POSITION_CHOICES = [
         ('GK', 'Goalkeeper'),
-        ('CB', 'Center Back'),
+        ('DF', 'Center Back'),
         ('RB', 'Right Back'),
         ('LB', 'Left Back'),
-        ('CMD', 'Defensive Midfielder'),
-        ('CM', 'Central Midfielder'),
+        ('DF,MF', 'Defensive Midfielder'),
+        ('MF', 'Central Midfielder'),
         ('CAM', 'Attacking Midfielder'),
         ('RW', 'Right Winger'),
         ('LW', 'Left Winger'),
@@ -41,11 +41,23 @@ class BasePlayerFBREF(models.Model):
     ]
 
     name = models.CharField(max_length=30)
-    date_birth = models.DateField()
-    team_name = models.CharField(max_length=30)
-    original_position = models.CharField(max_length=3,
+    date_birth = models.DateField(null=True)
+    team_name = models.CharField(max_length=30, null=True)
+    original_position = models.CharField(max_length=10,
                                          choices=POSITION_CHOICES,
-                                         default=UNKNOWN)
-    matches_played = models.IntegerField()
-    as_starter = models.IntegerField()
-    minutes_played = models.IntegerField()
+                                         default=UNKNOWN,
+                                         null=True)
+    matches_played = models.IntegerField(null=True)
+    as_starter = models.IntegerField(null=True)
+    minutes_played = models.IntegerField(null=True)
+    goals = models.IntegerField(null=True)
+    assists = models.IntegerField(null=True)
+    non_pen_goals = models.IntegerField(null=True)
+    penalty_goals = models.IntegerField(null=True)
+    penalty_attempts = models.IntegerField(null=True)
+    yellow_cards = models.IntegerField(null=True)
+    red_cards = models.IntegerField(null=True)
+    exp_goals = models.FloatField(null=True)
+    exp_non_pen_goals = models.FloatField(null=True)
+    exp_goals_assists = models.FloatField(null=True)
+    expected_non_pen_goals_assists = models.FloatField(null=True)
