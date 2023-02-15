@@ -61,3 +61,6 @@ class BasePlayerStatsFBREF(models.Model):
     exp_non_pen_goals = models.FloatField(null=True)
     exp_goals_assists = models.FloatField(null=True)
     expected_non_pen_goals_assists = models.FloatField(null=True)
+    progressive_carries = models.FloatField(null=True)
+    progressive_passes = models.FloatField(null=True)
+    progressive_passes_received = models.FloatField(null=True)

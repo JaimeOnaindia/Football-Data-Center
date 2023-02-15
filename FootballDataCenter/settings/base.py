@@ -184,9 +184,22 @@ TRANSFERMARKET_SEARCH_RESULT_BY_PLAYER = 'https://www.transfermarkt.com/schnells
 
 FBREF_5_EUROPEAN_LEAGUES_PLAYERS_URL = 'https://fbref.com/en/comps/Big5/stats/players/Big-5-European-Leagues-Stats' # NOQA
 
-FBREF_5_EUROPEAN_LEAGUES_PLAYERS_COLUMNS = [
+FBREF_5_EUROPEAN_LEAGUES_TEAMS_URL = 'https://fbref.com/en/comps/Big5/passing_types/squads/Big-5-European-Leagues-Stats' # NOQA
+
+FBREF_PLAYERS_BASIC_INFO = [
     'rank', 'name', 'nation', 'position', 'team', 'league', 'age', 'born_year',
-    'matches_played', 'starter', 'minutes_played', 'goals', 'assists', 'non_pen_goals',
-    'penalty_goals', 'penalty_attempts', 'yellow_cards', 'red_cards', 'exp_goals',
-    'exp_non_pen_goals', 'exp_goals_assists', 'expected_non_pen_goals_assists'
+    'matches_played', 'starter', 'minutes_played'
+]
+
+FBREF_PLAYERS_PERFORMANCE = [
+    'goals', 'assists', 'goals_and_assists', 'non_pen_goals', 'penalty_goals',
+    'penalty_attempts', 'yellow_cards', 'red_cards'
+]
+
+FBREF_PLAYERS_EXPECTED = [
+    'exp_goals', 'exp_non_pen_goals', 'exp_goals_assists', 'expected_non_pen_goals_assists'
+]
+
+FBREF_PLAYERS_PROGRESSION = [
+    'progressive_carries', 'progressive_passes', 'progressive_passes_received'
 ]

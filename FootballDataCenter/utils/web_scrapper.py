@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 
 class WebScrapper:
-    def __init__(self, url, table_id=None):
+    def __init__(self, url: str, table_id=None):
         self.url = url
         self.table_id = table_id
 

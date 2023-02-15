@@ -36,5 +36,3 @@ class Command(BaseCommand):
         players_table_html = soup.table
         print(players_table_html)
         print("aa")
-
-
