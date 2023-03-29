@@ -1,5 +1,6 @@
 # Byte-compiled / optimized / DLL files
 _pycache_/
+__pycache__/
 *.py[cod]
 *$py.class
 
@@ -101,7 +102,7 @@ venv.bak/
 /site
 
 # pycharm project settings
-.idea
+.idea/
 # mypy
 .mypy_cache/
 
