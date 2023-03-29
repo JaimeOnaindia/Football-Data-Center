@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'geo',
     'players',
     'teams',
-    'system'
+    'system',
+    'leagues'
 ]
 
 MIDDLEWARE = [
@@ -114,7 +115,12 @@ LOGGING = {
             'handlers': ['file', ],
             'level': 'INFO',
             'propagate': True
-        }
+        },
+        'leagues': {
+            'handlers': ['file', ],
+            'level': 'INFO',
+            'propagate': True
+        },
     }
 }
 
