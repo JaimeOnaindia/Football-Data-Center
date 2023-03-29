@@ -7,13 +7,8 @@
     <list default="true" id="95e64f34-ceb0-41d3-ae95-68de88f65afe" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FootballDataCenter/FootballDataCenter/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/FootballDataCenter/FootballDataCenter/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FootballDataCenter/players/management/commands/import_players_from_csv.py" beforeDir="false" afterPath="$PROJECT_DIR$/FootballDataCenter/players/management/commands/import_players_from_csv.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FootballDataCenter/players/management/commands/import_players_from_fbref.py" beforeDir="false" afterPath="$PROJECT_DIR$/FootballDataCenter/players/management/commands/import_players_from_fbref.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FootballDataCenter/players/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/FootballDataCenter/players/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FootballDataCenter/players/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/FootballDataCenter/players/templates/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FootballDataCenter/settings/base.py" beforeDir="false" afterPath="$PROJECT_DIR$/FootballDataCenter/settings/base.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FootballDataCenter/teams/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/FootballDataCenter/teams/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FootballDataCenter/utils/web_scrapper.py" beforeDir="false" afterPath="$PROJECT_DIR$/FootballDataCenter/utils/web_scrapper.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,23 +37,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/onak97/Documentos/Football-Data-Center/FootballDataCenter",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/onak97/Documentos/Football-Data-Center/FootballDataCenter&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/FootballDataCenter/players/static/img" />
       <recent name="$PROJECT_DIR$/FootballDataCenter/Players/Data" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.import_players_from_fbref">
+  <component name="RunManager" selected="Python.runserver">
     <configuration name="import_countries" type="PythonConfigurationType" factoryName="Python">
       <module name="FootballDataCenter" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -215,12 +210,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/FootballDataCenter/players/management/commands/import_players_from_fbref.py</url>
-          <line>92</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/FootballDataCenter/players/management/commands/import_players_from_fbref.py</url>
-          <line>51</line>
+          <line>50</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
