@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Football Codebase</title>
+</head>
+<body>
+    <h2>Football Codebase</h2>
+    <img src= '../static/img/images.jpeg' >
+    <div>NUM PLAYERS: {{ num_players }}</div>
+    <br>
+
+    <h2>Search Player</h2>
+    <input type="text" id="query" placeholder="Search...">
+    <div id="results"></div>
+
+    <br>
+    <br>
+    <h2>ALL PLAYERS</h2>
+    {% for player in best_players %}
+        <p>{{ player.name }} | {{ player.team_name }} | {{ player.goals }}</p>
+    {% endfor %}
+
+
+<!----- JAVASCRIPT ------->
+{% block js %}
+<script>
+    const queryInput = document.getElementById('query');
+    const resultsDiv = document.getElementById('results');
+
+    queryInput.addEventListener('input', function() {
+        const query = queryInput.value;
+        const min_characters = 3;
+        if (query.length >= min_characters) {
+            fetch(`/search_player?query=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    debugger;
+                    resultsDiv.innerHTML = '';
+                    data.forEach(result => {
+                        const resultItem = document.createElement('div');
+                        resultItem.textContent = result;
+                        resultsDiv.appendChild(resultItem);
+                    });
+                });
+        } else {
+            resultsDiv.innerHTML = '';
+        }
+    });
+</script>
+{% endblock %}
+</body>
+
+</html>

@@ -110,3 +110,6 @@ venv.bak/
 # js settings
 package-lock.json
 dist
+
+# bd
+football-db

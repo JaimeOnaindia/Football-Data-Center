@@ -1,4 +1,4 @@
-"""FootballDataCenter URL Configuration
+"""main URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -16,9 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-import FootballDataCenter.views
+from main.views import home, search_player
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', FootballDataCenter.views.home),
+    path('', home),
+    path('search_player/', search_player),
 ]
