@@ -36,11 +36,10 @@
             fetch(`/search_player?query=${query}`)
                 .then(response => response.json())
                 .then(data => {
-                    debugger;
                     resultsDiv.innerHTML = '';
-                    data.forEach(result => {
+                    data.results.forEach(result => {
                         const resultItem = document.createElement('div');
-                        resultItem.textContent = result;
+                        resultItem.textContent = `${result.name} | ${result.team_name} | ${result.goals}`;
                         resultsDiv.appendChild(resultItem);
                     });
                 });
