@@ -6,10 +6,10 @@ from players.models import BasePlayerStatsFBREF
 
 
 def home(request):
-    best_players = list(BasePlayerStatsFBREF.objects.all().order_by('-goals'))
-    num_players = len(best_players)
-    return render(request, 'home.html',
-                  {'best_players': best_players,
+    all_players = BasePlayerStatsFBREF.objects.all().order_by('-goals')
+    num_players = all_players.count()
+    return render(request, 'tables-data.html',
+                  {'best_players': list(all_players)[:100],
                    'num_players': num_players})
 
 

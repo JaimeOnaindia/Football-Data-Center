@@ -1,26 +1,27 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Football Codebase</title>
-</head>
-<body>
-    <h2>Football Codebase</h2>
-    <img src= '../static/img/images.jpeg' >
-    <div>NUM PLAYERS: {{ num_players }}</div>
-    <br>
 
-    <h2>Search Player</h2>
+{% block content %}
+
+<body>
+    <h1>Football Codebase</h1>
+    <br>
+    <img src="{% static 'assets/img/messi-shoe-celebration.jpg' %}"
+         width="400px" height="500px">
+    <div></div>
+    <br>
+    <h2>Search All Players</h2><p>(Number of players: {{ num_players }})</p>
+
     <input type="text" id="query" placeholder="Search...">
     <div id="results"></div>
-
     <br>
     <br>
-    <h2>ALL PLAYERS</h2>
+    <h2>TOP 50 GOALSCORERS THIS SEASON</h2>
+    <br>
     {% for player in best_players %}
         <p>{{ player.name }} | {{ player.team_name }} | {{ player.goals }}</p>
     {% endfor %}
+
 
 
 <!----- JAVASCRIPT ------->
@@ -51,4 +52,4 @@
 {% endblock %}
 </body>
 
-</html>
+{% endblock %}
