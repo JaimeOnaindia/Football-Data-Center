@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: football_db
+      POSTGRES_USER: football
+      POSTGRES_PASSWORD: pass_football
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:alpine
+
+  django:
+    build: .
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DJANGO_SETTINGS_MODULE=src.settings.dev
+    depends_on:
+      - django_quickstart_db
+      - redis
+
+volumes:
+  postgres_data:

@@ -1,12 +1,25 @@
+import os
+
 from settings.base import *
 
 
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'football-db',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "football_db",
+        "USER": "football",
+        "PASSWORD": "pass_football",
+        "HOST": os.getenv('DB_HOST'),
+        "PORT": "5432",
+    }
+}
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://redis_django_db:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
     }
 }

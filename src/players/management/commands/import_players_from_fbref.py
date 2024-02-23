@@ -26,7 +26,7 @@ class Command(BaseCommand):
         players_processed_df = self.process_stats_dataframe(players_stats_df)
         self.update_or_create_players_to_database(players_processed_df)
 
-    def process_stats_dataframe(self, players_stats_df: DataFrame):
+    def process_stats_dataframe(self, players_stats_df: DataFrame) -> DataFrame:
         player_playing_time_stats_df = self.get_playing_time_dataframe(players_stats_df)
         player_performance_stats_df = self.get_performance_dataframe(players_stats_df)
         player_expected_stats_df = self.get_expected_dataframe(players_stats_df)
@@ -60,35 +60,35 @@ class Command(BaseCommand):
         return next(g, True) and not next(g, False)
 
     @staticmethod
-    def get_playing_time_dataframe(players_stats_df: DataFrame):
+    def get_playing_time_dataframe(players_stats_df: DataFrame) -> DataFrame:
         columns = settings.FBREF_PLAYERS_BASIC_INFO
         player_playing_time_stats_df = players_stats_df[0].iloc[:, :11]
         player_playing_time_stats_df.columns = columns[:11]
         return player_playing_time_stats_df
 
     @staticmethod
-    def get_performance_dataframe(players_stats_df: DataFrame):
+    def get_performance_dataframe(players_stats_df: DataFrame) -> DataFrame:
         columns = settings.FBREF_PLAYERS_PERFORMANCE
         player_performance_stats_df = players_stats_df[0]['Performance']
         player_performance_stats_df.columns = columns
         return player_performance_stats_df
 
     @staticmethod
-    def get_expected_dataframe(players_stats_df: DataFrame):
+    def get_expected_dataframe(players_stats_df: DataFrame) -> DataFrame:
         columns = settings.FBREF_PLAYERS_EXPECTED
         player_expected_df = players_stats_df[0]['Expected']
         player_expected_df.columns = columns
         return player_expected_df
 
     @staticmethod
-    def get_progression_dataframe(players_stats_df: DataFrame):
+    def get_progression_dataframe(players_stats_df: DataFrame) -> DataFrame:
         columns = settings.FBREF_PLAYERS_PROGRESSION
         player_progression_df = players_stats_df[0]['Progression']
         player_progression_df.columns = columns
         return player_progression_df
 
     @staticmethod
-    def process_players_positions(position: str):
+    def process_players_positions(position: str) -> str:
         positions_dict = {
             'GK': 'GK',
             'DF': 'DF',
@@ -103,7 +103,9 @@ class Command(BaseCommand):
         }
         return positions_dict.get(position)
 
-    def update_or_create_players_to_database(self, players_processed_df: DataFrame):
+    def update_or_create_players_to_database(
+            self, players_processed_df: DataFrame
+    ):
         for row in players_processed_df.to_dict('records'):
             code_alpha_3 = row['nation'].split(' ')[-1] if row['nation'] != 0 else None
             country = Country.objects.filter(code_alpha_3=code_alpha_3).first()
