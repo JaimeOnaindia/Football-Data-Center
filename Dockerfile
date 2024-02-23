@@ -37,7 +37,7 @@ COPY entrypoint.sh /app/
 RUN chmod +x /app/entrypoint.sh
 
 # Configura el script entrypoint.sh como el punto de entrada
-ENTRYPOINT ["/app/entrypoint.sh"]
+#ENTRYPOINT ["/app/entrypoint.sh"]
 
 # CMD se sobreescribe en el compose, pero puedes definir uno por defecto aquí
 # CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

@@ -16,15 +16,16 @@ services:
     image: redis:alpine
 
   django:
+    command: python src/manage.py runserver 0.0.0.0:8000
     build: .
     volumes:
       - .:/app
     ports:
       - "8000:8000"
     environment:
-      - DJANGO_SETTINGS_MODULE=src.settings.dev
+      - DJANGO_SETTINGS_MODULE=settings.dev
     depends_on:
-      - django_quickstart_db
+      - postgres
       - redis
 
 volumes:

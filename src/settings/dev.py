@@ -1,7 +1,6 @@
-import os
-
 from settings.base import *
 
+import os
 
 DATABASES = {
     "default": {
